@@ -1,5 +1,5 @@
-# Conference presentation
-https://enucatl-presentations.github.io/2017.09.15.xnpig/
+# presentation
+https://enucatl-presentations.github.io/2018.03.06.progress.report/
 
 git hook to push the compiled version to gh-pages
 -------------------------------------------------
@@ -18,5 +18,3 @@ push
 ```
 git subtree push --prefix=source/vendor/eth-reveal-theme eth-reveal-theme master
 ```
-
-video on youtube (unlisted, in case it doesnt work from the slide: https://youtu.be/ZhTkCU1hT08)
