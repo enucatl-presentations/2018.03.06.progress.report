@@ -24,110 +24,188 @@
 <img align='right' alt='PSI Logo' src='vendor/eth-reveal-theme/images/psi-logo.jpg' width='15%'>
 <div class='slides'>
 <section data-background-position='bottom' data-background-size='100%' data-background='vendor/eth-reveal-theme/images/eth-sls-background.jpg'>
-<h3>Dark field for polychromatic sources</h3>
+<h3>Dark field of lung microstructures from synchrotron micro CT to a table top setup</h3>
 </section>
 <section>
-<h3>Outline</h3>
+<h3>From monochromatic beam and single sizes to a lung model</h3>
+<p>\(B = v / v_0 = \exp (-\mu_B t)\)</p>
+<p>
+Sample made of identical spheres of the same material
+\(\mu_B(r, E; n, f)\) studied in recent literature:
 <ul>
-<li class='alert alert-success'>(XNPIG 2017) calculating dark field values for lung samples</li>
-<li class='alert alert-danger'>dual phase contrast with CdTe detector</li>
+<li>\(r\) radius of the spheres</li>
+<li>\(E\) beam energy</li>
+<li>\(n\) refractive index</li>
+<li>\(f\) volume fraction occupied by the spheres</li>
 </ul>
+</p>
 </section>
 <section>
-<h3>Ratio of the logarithms</h3>
+<h3>Literature links</h3>
 <ul>
-<li>transmission \(A\)</li>
-<li>visibility reduction \(B\)</li>
-<li>log ratio \(R = \log(B) / \log(A)\)</li>
+<li>
+Yashiro et al. (2010)
+<a href='https://www.osapublishing.org/DirectPDFAccess/A0363674-F879-4C08-273C71BACAE46C0C_204086/oe-18-16-16890.pdf?da=1&amp;id=204086&amp;seq=0&amp;mobile=no'>On the origin of visibility contrast in x-ray Talbot interferometry</a>
+</li>
+<li>
+Lynch et al. (2011)
+<a href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3407965/'>Interpretation of dark-field contrast and particle-size selectivity in grating interferometers</a>
+</li>
+<li>
+Gkoumas et al. (2016)
+<a href='https://www.nature.com/articles/srep35259'>A generalized quantitative interpretation of dark-field contrast for highly concentrated microsphere suspensions</a>
+</li>
 </ul>
-</section>
-<section>
-<h3>Monochromatic case</h3>
-<p>dark field as a function of sphere diameter and photon energy</p>
-<small>S. Lynch et al., <i>Interpretation of dark-field contrast and particle-size selectivity in grating interferometers</i>, 2011</small>
-<div class='col-md-6' style='font-size: 70%;'>
-\[
-B \propto \mu_d = \frac{3\pi}{\lambda^2}f |\Delta n|^2 d
-\begin{cases}
-D' & \text{if } D' \leqslant 1\\[2ex]
-\!\begin{align}
-D' - \sqrt{D'^2 - 1}\\
-(1 + D'^{-2}/2) \\
-+ (D'^{-1} + D'^{-3} / 4) \\
-\log\left(\frac{D' + \sqrt{D'^2 - 1}}{D' - \sqrt{D'^2 - 1}}\right)
-\end{align} & \text{otherwise}
-\end{cases}
-\]
-</div>
-</section>
-<section>
-<h3>Monochromatic case</h3>
-<p>dark field as a function of sphere diameter and photon energy</p>
-<small>S. Lynch et al., <i>Interpretation of dark-field contrast and particle-size selectivity in grating interferometers</i>, 2011</small>
-<div class='col-md-12'>
-<img style="width: 50%" src="https://www.researchgate.net/profile/Vinay_Pai/publication/51563274/figure/fig4/AS:305732164571139@1449903636286/Fig-4.png" />
-</div>
+<p>
+we used the latest for which we have the
+<a href='https://github.com/Enucatl/structure-factors/blob/master/structure_factors/saxs.py'>code</a>
+</p>
 </section>
 <section>
 <h3>Polychromatic extension</h3>
 <p>
 \[
-R(\energy) = \frac{\log B}{\log A} = \frac{\mu_d}{2k\beta}
+\mu_B = \int_{\text{radii}}\int_{\text{energies}} \mu(r, E; n, f)\rho(r)s(E)\mathop{dr}\mathop{dE}
 \]
 </p>
-<p>
-\[
-R \propto \frac{\sum_\energy w(\energy)|\Delta n(\energy)|^2 \energy u(\energy)}{\sum_\energy w(\energy) \energy \beta}
-\]
-</p>
-<ul>
-<li>\(w\) spectral weights</li>
-<li>\(u\) conditional statement</li>
-</ul>
-<div class='col-md-12'>
-<small>M. Abis et al., <i>in preparation</i></small>
-</div>
+<table>
+<thead>
+<tr>
+<th>input</th>
+<th>description</th>
+<th>source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(s(E)\)</td>
+<td>source spectrum</td>
+<td>simulation</td>
+</tr>
+<tr>
+<td>\(n\)</td>
+<td>refractive index</td>
+<td>NIST database</td>
+</tr>
+<tr>
+<td>\(f\)</td>
+<td>volume fraction occupied by spheres</td>
+<td>microtomography</td>
+</tr>
+<tr>
+<td>\(\rho(r)\)</td>
+<td>distribution of sphere sizes</td>
+<td>microtomography</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section>
-<h3>Table-top grating interferometer with microspheres</h3>
-<div class='col-md-6'>
-<p>20% volume fraction of SiO2 microspheres in glycerine</p>
+<h3>Consistency check: integrating over energies only</h3>
+<div class='col-md-3'>
+<p></p>
 </div>
 <div class='col-md-6'>
 <img src="https://github.com/Enucatl/microspheres/raw/master/data/summary.png" />
 </div>
-<small>M. Abis et al., <i>in preparation</i></small>
 </section>
 <section>
-<h3>Investigating lung microstructures</h3>
+<h3>Estimating \(n\) and \(f\)</h3>
 <ul>
-<li>ground truth from synchrotron microtomography</li>
-<li>quantitative data from the table-top setup on a macroscopic scale</li>
+<li>
+\(n\):
+<a href='https://physics.nist.gov/PhysRefData/XrayMassCoef/tab2.html'>NIST database</a>
+with density matching beamline absorption at 12 keV
+</li>
+<li>
+\(f\): pixel counting in the segmented image
+</li>
 </ul>
+</section>
+<section>
+<h3>From lung microstructures to sphere distributions</h3>
 <div class='col-md-12'>
 <img src="images/smoke_stitched.png" style="width: 60%" alt="Smoke stitched" />
 </div>
-<div class='col-md-12'>
-<small>G. Lovrić et al., <i>Dose optimization approach to fast X-ray microtomography of the lung alveoli</i>, 2013</small>
+</section>
+<section>
+<h3>Technical challenges</h3>
+<ul>
+<li>datasets with 2540x2160x6000 pixels</li>
+<li>fiji implementation has excessive requirements on both memory and processing time</li>
+</ul>
+</section>
+<section>
+<h3>Complete rewrite</h3>
+<ul>
+<li>C and C++ with python bindings</li>
+<li>
+<a href='https://bitbucket.org/gnudo/fast-thickmap'>code (with Goran and Arttu)</a>
+</li>
+<li>eliminate empty spaces outside of the sample</li>
+<li>ignore airways larger than 100 μm</li>
+<li>process spheres from the largest to the smallest, drastically reducing cpu cycles</li>
+<li>split volume into several subvolumes for a smaller memory footprint</li>
+<li>used all hardware resources: gws-3, gws-4 and RA cluster</li>
+</ul>
+</section>
+<section>
+<h3>Polychromatic extension</h3>
+<p>
+\[
+\mu_B = \int_{\text{radii}}\int_{\text{energies}} \mu(r, E; n, f)\rho(r)s(E)\mathop{dr}\mathop{dE}
+\]
+</p>
+<table>
+<thead>
+<tr>
+<th>input</th>
+<th>description</th>
+<th>source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(s(E)\)</td>
+<td>source spectrum</td>
+<td>simulation</td>
+</tr>
+<tr>
+<td>\(n\)</td>
+<td>refractive index</td>
+<td>NIST database</td>
+</tr>
+<tr>
+<td>\(f\)</td>
+<td>volume fraction occupied by spheres</td>
+<td>microtomography</td>
+</tr>
+<tr>
+<td>\(\rho(r)\)</td>
+<td>distribution of sphere sizes</td>
+<td>microtomography</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section>
+<h3>Results</h3>
+<div class='col-md-1'>
+<p></p>
+</div>
+<div class='col-md-9'>
+<img src="https://raw.githubusercontent.com/Enucatl/compare-lungs-theory/master/samples.png" />
 </div>
 </section>
 <section>
-<h3>Acquisition of the ground truth</h3>
-<div class='col-md-6'>
-<img src="images/mouse_tomcat.png" alt="Mouse tomcat" />
-<ul>
-<li>critical point dried lungs</li>
-<li>tomographic scan at 21 keV</li>
-<li>1.1 μm effective pixel size</li>
-<li>three mouse samples</li>
-</ul>
-</div>
-<div class='col-md-6'>
-<img src="images/ko373.png" alt="Ko373" />
-</div>
-<div class='col-md-12'>
-<small>G. Lovrić et al., <i>Dose optimization approach to fast X-ray microtomography of the lung alveoli</i>, 2013</small>
-</div>
+<h3>Thank you for your attention</h3>
+</section>
+<section>
+<h3>Backup</h3>
+</section>
+<section>
+<h3>Previous progress report</h3>
+<a href='https://enucatl-presentations.github.io/2017.09.26.progress.report/'></a>
 </section>
 <section>
 <h3>Microtomography and postprocessing</h3>
@@ -169,94 +247,6 @@ R \propto \frac{\sum_\energy w(\energy)|\Delta n(\energy)|^2 \energy u(\energy)}
 <p>dark-field response</p>
 <img src="images/full_summary.png" alt="Full summary" />
 </div>
-</section>
-<section>
-<h3>Grating interferometry</h3>
-<div class='col-md-7'>
-<p>measure \(R\)</p>
-<img src="images/IMG_20170907_121347_arrow.jpg" alt="Img 20170907 121347 arrow" />
-</div>
-<div class='col-md-5'>
-<img src="images/WT256_LL_smoke.png" alt="Wt256 ll smoke" />
-</div>
-</section>
-<section>
-<h3>Preliminary validation</h3>
-<div class='col-md-12'>
-<small>
-<table>
-<thead>
-<th>sample</th>
-<th>expected</th>
-<th>measured</th>
-</thead>
-<tbody>
-<tr>
-<td>\(1\)</td>
-<td>\(22.2\)</td>
-<td>\(21.3 \pm 1.8\)</td>
-</tr>
-<tr>
-<td>\(2\)</td>
-<td>\(13.7\)</td>
-<td>\(16.5 \pm 1.6\)</td>
-</tr>
-<tr>
-<td>\(3\)</td>
-<td>\(14.4\)</td>
-<td>\(17.7 \pm 1.4\)</td>
-</tr>
-</tbody>
-</table>
-</small>
-</div>
-<div class='col-md-7'>
-<img src="images/size_pdf.png" alt="Size pdf" />
-</div>
-<div class='col-md-5'>
-<ul>
-<li>sample 1 has smaller structures \(\rightarrow\) larger \(R\)</li>
-<li>sample 2/3 similar</li>
-<li>consistent values for the three samples</li>
-</ul>
-</div>
-<div class='col-md-12'>
-<small>M. Abis et al., <i>in preparation</i></small>
-</div>
-</section>
-<section>
-<h3>Upcoming challenges</h3>
-<ul>
-<li>the sphere fit program cannot accomodate full tomographic datasets</li>
-<li>possible workaround: sampling, splitting</li>
-<li>calculations take more than one day per sample (40 samples total)</li>
-</ul>
-</section>
-<section>
-<h3>Dual phase setup</h3>
-<small>Pushin et al. <i>Far-field interference of a neutron white beam and the applications to noninvasive phase-contrast imaging</i></small>
-<div class='col-md-6'>
-<ul>
-<li>G0 with 10 μm slits every 100 μm (thanks Konstantins for the super fast manufacturing!)</li>
-<li>G1/2 phase gratings with 10-20 μm gold with 1.2 μm pitch (thanks Carolina)</li>
-<li>tried many distance combinations but no interference observed so far</li>
-</ul>
-</div>
-<div class='col-md-6'>
-<img src="images/photo_2017-09-25_22-56-10.jpg" alt="Photo 2017 09 25 22 56 10" />
-</div>
-</section>
-<section>
-<h3>Troubleshooting the current setup</h3>
-<ul>
-<li>G0 might not be thick enough (running at 90 kVp should ensure at least 80% absorption)</li>
-<li>the phase gratings may not be consistent enough in their phase shift</li>
-<li>the alignment could be so far off that it's not possible to correct with the motors (these gratings can't be aligned through laser diffraction)</li>
-<li>trying different gratings with double the pitch at 2.4 μm also doubles the length but might be the only chance</li>
-</ul>
-</section>
-<section>
-<h3>Thank you for your attention</h3>
 </section>
 
 </div>
