@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset='utf-8'>
+<meta content='7th progress report' name='description'>
+<meta content='Matteo Abis' name='author'>
+<meta content='yes' name='apple-mobile-web-app-capable'>
+<meta content='black-translucent' name='apple-mobile-web-app-status-bar-style'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport'>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="stylesheets/all.css" rel="stylesheet" />
+<link href="vendor/eth-reveal-theme/eth.css" rel="stylesheet" id="theme" />
+<script src="vendor/reveal/lib/js/head.min.js"></script>
+<script src="javascripts/reveal_print_pdf.js"></script>
+<!--[if lt IE 9]>
+<script src="vendor/reveal.js/lib/js/html5shiv.js"></script>
+<![endif]-->
+</head>
+<body class='index'>
+<div class='reveal'>
+<img align='left' alt='ETH Logo' src='vendor/eth-reveal-theme/images/eth-logo.jpg' width='15%'>
+<img align='right' alt='PSI Logo' src='vendor/eth-reveal-theme/images/psi-logo.jpg' width='15%'>
+<div class='slides'>
+<section data-background-position='bottom' data-background-size='100%' data-background='vendor/eth-reveal-theme/images/eth-sls-background.jpg'>
+<h3>Dark field for polychromatic sources</h3>
+</section>
+<section>
+<h3>Outline</h3>
+<ul>
+<li class='alert alert-success'>(XNPIG 2017) calculating dark field values for lung samples</li>
+<li class='alert alert-danger'>dual phase contrast with CdTe detector</li>
+</ul>
+</section>
+<section>
+<h3>Ratio of the logarithms</h3>
+<ul>
+<li>transmission \(A\)</li>
+<li>visibility reduction \(B\)</li>
+<li>log ratio \(R = \log(B) / \log(A)\)</li>
+</ul>
+</section>
+<section>
+<h3>Monochromatic case</h3>
+<p>dark field as a function of sphere diameter and photon energy</p>
+<small>S. Lynch et al., <i>Interpretation of dark-field contrast and particle-size selectivity in grating interferometers</i>, 2011</small>
+<div class='col-md-6' style='font-size: 70%;'>
+\[
+B \propto \mu_d = \frac{3\pi}{\lambda^2}f |\Delta n|^2 d
+\begin{cases}
+D' & \text{if } D' \leqslant 1\\[2ex]
+\!\begin{align}
+D' - \sqrt{D'^2 - 1}\\
+(1 + D'^{-2}/2) \\
++ (D'^{-1} + D'^{-3} / 4) \\
+\log\left(\frac{D' + \sqrt{D'^2 - 1}}{D' - \sqrt{D'^2 - 1}}\right)
+\end{align} & \text{otherwise}
+\end{cases}
+\]
+</div>
+</section>
+<section>
+<h3>Monochromatic case</h3>
+<p>dark field as a function of sphere diameter and photon energy</p>
+<small>S. Lynch et al., <i>Interpretation of dark-field contrast and particle-size selectivity in grating interferometers</i>, 2011</small>
+<div class='col-md-12'>
+<img style="width: 50%" src="https://www.researchgate.net/profile/Vinay_Pai/publication/51563274/figure/fig4/AS:305732164571139@1449903636286/Fig-4.png" />
+</div>
+</section>
+<section>
+<h3>Polychromatic extension</h3>
+<p>
+\[
+R(\energy) = \frac{\log B}{\log A} = \frac{\mu_d}{2k\beta}
+\]
+</p>
+<p>
+\[
+R \propto \frac{\sum_\energy w(\energy)|\Delta n(\energy)|^2 \energy u(\energy)}{\sum_\energy w(\energy) \energy \beta}
+\]
+</p>
+<ul>
+<li>\(w\) spectral weights</li>
+<li>\(u\) conditional statement</li>
+</ul>
+<div class='col-md-12'>
+<small>M. Abis et al., <i>in preparation</i></small>
+</div>
+</section>
+<section>
+<h3>Table-top grating interferometer with microspheres</h3>
+<div class='col-md-6'>
+<p>20% volume fraction of SiO2 microspheres in glycerine</p>
+</div>
+<div class='col-md-6'>
+<img src="https://github.com/Enucatl/microspheres/raw/master/data/summary.png" />
+</div>
+<small>M. Abis et al., <i>in preparation</i></small>
+</section>
+<section>
+<h3>Investigating lung microstructures</h3>
+<ul>
+<li>ground truth from synchrotron microtomography</li>
+<li>quantitative data from the table-top setup on a macroscopic scale</li>
+</ul>
+<div class='col-md-12'>
+<img src="images/smoke_stitched.png" style="width: 60%" alt="Smoke stitched" />
+</div>
+<div class='col-md-12'>
+<small>G. Lovrić et al., <i>Dose optimization approach to fast X-ray microtomography of the lung alveoli</i>, 2013</small>
+</div>
+</section>
+<section>
+<h3>Acquisition of the ground truth</h3>
+<div class='col-md-6'>
+<img src="images/mouse_tomcat.png" alt="Mouse tomcat" />
+<ul>
+<li>critical point dried lungs</li>
+<li>tomographic scan at 21 keV</li>
+<li>1.1 μm effective pixel size</li>
+<li>three mouse samples</li>
+</ul>
+</div>
+<div class='col-md-6'>
+<img src="images/ko373.png" alt="Ko373" />
+</div>
+<div class='col-md-12'>
+<small>G. Lovrić et al., <i>Dose optimization approach to fast X-ray microtomography of the lung alveoli</i>, 2013</small>
+</div>
+</section>
+<section>
+<h3>Microtomography and postprocessing</h3>
+<ul>
+<li>synchrotron microtomography</li>
+<li>segmentation</li>
+</ul>
+<div class='col-md-12'>
+<img src="images/segmentation_procedure.png" alt="Segmentation procedure" />
+</div>
+<div class='col-md-12'>
+<small>G. Lovrić et al., <i>Automated computer-assisted quantitative analysis of intact murine lungs at the alveolar scale</i>, in press 10.1371/journal.pone.0183979</small>
+</div>
+</section>
+<section>
+<h3>Alveoli as spheres</h3>
+<ul>
+<li>fit spheres in the lung microstructures</li>
+<li>plot diameter distribution</li>
+</ul>
+<div class='col-md-6'>
+<img src="images/plos_thickness.png" alt="Plos thickness" />
+</div>
+<div class='col-md-6'>
+<img src="images/size_pdf.png" alt="Size pdf" />
+</div>
+<div class='col-md-12'>
+<small>G. Lovrić et al., <i>Automated computer-assisted quantitative analysis of intact murine lungs at the alveolar scale</i>, in press 10.1371/journal.pone.0183979</small>
+</div>
+</section>
+<section>
+<h3>The final model</h3>
+<p>sum over the sphere size distribution times the dark field response for each spere size</p>
+<div class='col-md-6'>
+<p>ground truth</p>
+<img src="images/size_pdf.png" alt="Size pdf" />
+</div>
+<div class='col-md-6'>
+<p>dark-field response</p>
+<img src="images/full_summary.png" alt="Full summary" />
+</div>
+</section>
+<section>
+<h3>Grating interferometry</h3>
+<div class='col-md-7'>
+<p>measure \(R\)</p>
+<img src="images/IMG_20170907_121347_arrow.jpg" alt="Img 20170907 121347 arrow" />
+</div>
+<div class='col-md-5'>
+<img src="images/WT256_LL_smoke.png" alt="Wt256 ll smoke" />
+</div>
+</section>
+<section>
+<h3>Preliminary validation</h3>
+<div class='col-md-12'>
+<small>
+<table>
+<thead>
+<th>sample</th>
+<th>expected</th>
+<th>measured</th>
+</thead>
+<tbody>
+<tr>
+<td>\(1\)</td>
+<td>\(22.2\)</td>
+<td>\(21.3 \pm 1.8\)</td>
+</tr>
+<tr>
+<td>\(2\)</td>
+<td>\(13.7\)</td>
+<td>\(16.5 \pm 1.6\)</td>
+</tr>
+<tr>
+<td>\(3\)</td>
+<td>\(14.4\)</td>
+<td>\(17.7 \pm 1.4\)</td>
+</tr>
+</tbody>
+</table>
+</small>
+</div>
+<div class='col-md-7'>
+<img src="images/size_pdf.png" alt="Size pdf" />
+</div>
+<div class='col-md-5'>
+<ul>
+<li>sample 1 has smaller structures \(\rightarrow\) larger \(R\)</li>
+<li>sample 2/3 similar</li>
+<li>consistent values for the three samples</li>
+</ul>
+</div>
+<div class='col-md-12'>
+<small>M. Abis et al., <i>in preparation</i></small>
+</div>
+</section>
+<section>
+<h3>Upcoming challenges</h3>
+<ul>
+<li>the sphere fit program cannot accomodate full tomographic datasets</li>
+<li>possible workaround: sampling, splitting</li>
+<li>calculations take more than one day per sample (40 samples total)</li>
+</ul>
+</section>
+<section>
+<h3>Dual phase setup</h3>
+<small>Pushin et al. <i>Far-field interference of a neutron white beam and the applications to noninvasive phase-contrast imaging</i></small>
+<div class='col-md-6'>
+<ul>
+<li>G0 with 10 μm slits every 100 μm (thanks Konstantins for the super fast manufacturing!)</li>
+<li>G1/2 phase gratings with 10-20 μm gold with 1.2 μm pitch (thanks Carolina)</li>
+<li>tried many distance combinations but no interference observed so far</li>
+</ul>
+</div>
+<div class='col-md-6'>
+<img src="images/photo_2017-09-25_22-56-10.jpg" alt="Photo 2017 09 25 22 56 10" />
+</div>
+</section>
+<section>
+<h3>Troubleshooting the current setup</h3>
+<ul>
+<li>G0 might not be thick enough (running at 90 kVp should ensure at least 80% absorption)</li>
+<li>the phase gratings may not be consistent enough in their phase shift</li>
+<li>the alignment could be so far off that it's not possible to correct with the motors (these gratings can't be aligned through laser diffraction)</li>
+<li>trying different gratings with double the pitch at 2.4 μm also doubles the length but might be the only chance</li>
+</ul>
+</section>
+<section>
+<h3>Thank you for your attention</h3>
+</section>
+
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="javascripts/all.js"></script>
+</body>
+</html>
