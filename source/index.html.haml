@@ -1,0 +1,189 @@
+%section{data: {"background" => "vendor/eth-reveal-theme/images/eth-sls-background.jpg", "background-size" => "100%", "background-position" => "bottom"}}
+  %h3 Dark field for polychromatic sources
+
+%section
+  %h3 Outline
+  %ul
+    %li.alert.alert-success (XNPIG 2017) calculating dark field values for lung samples
+    %li.alert.alert-danger dual phase contrast with CdTe detector
+
+%section
+  %h3 Ratio of the logarithms
+  %ul
+    %li transmission \(A\)
+    %li visibility reduction \(B\)
+    %li log ratio \(R = \log(B) / \log(A)\)
+
+%section
+  %h3 Monochromatic case
+  %p dark field as a function of sphere diameter and photon energy
+  %small S. Lynch et al., <i>Interpretation of dark-field contrast and particle-size selectivity in grating interferometers</i>, 2011
+  .col-md-6{style: "font-size: 70%;"}
+    \\[
+    \B \propto \mu_d = \frac{3\pi}{\lambda^2}f |\Delta n|^2 d
+    \\begin{cases}
+    D' & \text{if } D' \leqslant 1\\[2ex]
+    \\!\begin{align}
+    & D' - \sqrt{D'^2 - 1}\\
+    & (1 + D'^{-2}/2) \\
+    & + (D'^{-1} + D'^{-3} / 4) \\
+    & \log\left(\frac{D' + \sqrt{D'^2 - 1}}{D' - \sqrt{D'^2 - 1}}\right)
+    \\end{align} & \text{otherwise}
+    \\end{cases}
+    \\]
+
+%section
+  %h3 Monochromatic case
+  %p dark field as a function of sphere diameter and photon energy
+  %small S. Lynch et al., <i>Interpretation of dark-field contrast and particle-size selectivity in grating interferometers</i>, 2011
+  .col-md-12
+    = tag :img, style: "width: 50%", src: "https://www.researchgate.net/profile/Vinay_Pai/publication/51563274/figure/fig4/AS:305732164571139@1449903636286/Fig-4.png"
+
+%section
+  %h3 Polychromatic extension
+  %p
+    \\[
+    R(\energy) = \frac{\log B}{\log A} = \frac{\mu_d}{2k\beta}
+    \\]
+  %p
+    \\[
+    R \propto \frac{\sum_\energy w(\energy)|\Delta n(\energy)|^2 \energy u(\energy)}{\sum_\energy w(\energy) \energy \beta}
+    \\]
+  %ul
+    %li \(w\) spectral weights
+    %li \(u\) conditional statement
+  .col-md-12
+    %small M. Abis et al., <i>in preparation</i>
+
+%section
+  %h3 Table-top grating interferometer with microspheres
+  .col-md-6
+    %p 20% volume fraction of SiO2 microspheres in glycerine
+  .col-md-6
+    = tag :img, src: "https://github.com/Enucatl/microspheres/raw/master/data/summary.png"
+  %small M. Abis et al., <i>in preparation</i>
+
+%section
+  %h3 Investigating lung microstructures
+  %ul
+    %li ground truth from synchrotron microtomography
+    %li quantitative data from the table-top setup on a macroscopic scale
+  .col-md-12
+    = image_tag "smoke_stitched.png", style: "width: 60%"
+  .col-md-12
+    %small G. Lovrić et al., <i>Dose optimization approach to fast X-ray microtomography of the lung alveoli</i>, 2013
+
+%section
+  %h3 Acquisition of the ground truth
+  .col-md-6
+    = image_tag "mouse_tomcat.png"
+    %ul
+      %li critical point dried lungs
+      %li tomographic scan at 21 keV
+      %li 1.1 μm effective pixel size
+      %li three mouse samples
+  .col-md-6
+    = image_tag "ko373.png"
+  .col-md-12
+    %small G. Lovrić et al., <i>Dose optimization approach to fast X-ray microtomography of the lung alveoli</i>, 2013
+
+%section
+  %h3 Microtomography and postprocessing
+  %ul
+    %li synchrotron microtomography
+    %li segmentation
+  .col-md-12
+    = image_tag "segmentation_procedure.png"
+  .col-md-12
+    %small G. Lovrić et al., <i>Automated computer-assisted quantitative analysis of intact murine lungs at the alveolar scale</i>, in press 10.1371/journal.pone.0183979
+
+%section
+  %h3 Alveoli as spheres
+  %ul
+    %li fit spheres in the lung microstructures
+    %li plot diameter distribution
+  .col-md-6
+    = image_tag "plos_thickness.png"
+  .col-md-6
+    = image_tag "size_pdf.png"
+  .col-md-12
+    %small G. Lovrić et al., <i>Automated computer-assisted quantitative analysis of intact murine lungs at the alveolar scale</i>, in press 10.1371/journal.pone.0183979
+
+%section
+  %h3 The final model
+  %p sum over the sphere size distribution times the dark field response for each spere size
+  .col-md-6
+    %p ground truth
+    = image_tag "size_pdf.png"
+  .col-md-6
+    %p dark-field response
+    = image_tag "full_summary.png"
+
+%section
+  %h3 Grating interferometry
+  .col-md-7
+    %p measure \(R\)
+    = image_tag "IMG_20170907_121347_arrow.jpg"
+  .col-md-5
+    = image_tag "WT256_LL_smoke.png"
+
+%section
+  %h3 Preliminary validation
+  .col-md-12
+    %small
+      %table
+        %thead
+          %th sample
+          %th expected
+          %th measured
+        %tbody
+          %tr
+            %td \(1\)
+            %td \(22.2\)
+            %td \(21.3 \pm 1.8\)
+          %tr
+            %td \(2\)
+            %td \(13.7\)
+            %td \(16.5 \pm 1.6\)
+          %tr
+            %td \(3\)
+            %td \(14.4\)
+            %td \(17.7 \pm 1.4\)
+  .col-md-7
+    = image_tag "size_pdf.png"
+  .col-md-5
+    %ul
+      %li sample 1 has smaller structures \(\rightarrow\) larger \(R\)
+      %li sample 2/3 similar
+      %li consistent values for the three samples
+  .col-md-12
+    %small M. Abis et al., <i>in preparation</i>
+
+%section
+  %h3 Upcoming challenges
+  %ul
+    %li the sphere fit program cannot accomodate full tomographic datasets
+    %li possible workaround: sampling, splitting
+    %li calculations take more than one day per sample (40 samples total)
+
+%section
+  %h3 Dual phase setup
+  %small Pushin et al. <i>Far-field interference of a neutron white beam and the applications to noninvasive phase-contrast imaging</i>
+  .col-md-6
+    %ul
+      %li G0 with 10 μm slits every 100 μm (thanks Konstantins for the super fast manufacturing!)
+      %li G1/2 phase gratings with 10-20 μm gold with 1.2 μm pitch (thanks Carolina)
+      %li tried many distance combinations but no interference observed so far
+  .col-md-6
+    = image_tag "photo_2017-09-25_22-56-10.jpg"
+
+%section
+  %h3 Troubleshooting the current setup
+  %ul
+    %li G0 might not be thick enough (running at 90 kVp should ensure at least 80% absorption)
+    %li the phase gratings may not be consistent enough in their phase shift
+    %li the alignment could be so far off that it's not possible to correct with the motors (these gratings can't be aligned through laser diffraction)
+    %li trying different gratings with double the pitch at 2.4 μm also doubles the length but might be the only chance
+
+%section
+  %h3 Thank you for your attention
